@@ -5,8 +5,8 @@ DECLARE @r4 INT;
 DECLARE @r5 INT;
 DECLARE @r6 INT;
 DECLARE @b1 INT;
-DECLARE @flag INT; --Ö´ÐÐ´ÎÊý
-SET @flag = 100; 
+DECLARE @randnum INT; --æ‰§è¡Œæ¬¡æ•°
+SET @randnum = 100; 
 
 
 SELECT  @r1 = FLOOR(RAND() * 34);
@@ -17,7 +17,7 @@ SELECT  @r5 = FLOOR(RAND() * 34);
 SELECT  @r6 = FLOOR(RAND() * 34);
 SELECT  @b1 = FLOOR(RAND() * 17);
 
-WHILE ( @flag > 0 )
+WHILE ( @randnum > 0 )
     BEGIN
         IF @r1 != 0
             AND @r1 NOT IN ( @r2, @r3, @r4, @r5, @r6 )
@@ -32,9 +32,9 @@ WHILE ( @flag > 0 )
             AND @r6 != 0
             AND @r6 NOT IN ( @r2, @r3, @r4, @r5, @r1 )
             AND @b1 != 0
-			AND @flag = 1
+			AND @randnum = 1
             BEGIN
-				SELECT  @flag = 0;
+				SELECT  @randnum = 0;
                 SELECT  @r1 red,
                         @r2 red,
                         @r3 red,
@@ -46,9 +46,9 @@ WHILE ( @flag > 0 )
             END;
         ELSE
             BEGIN
-				IF @flag = 1
+				IF @randnum = 1
 				BEGIN
-				SELECT @flag = 2 
+				SELECT @randnum = 2 
 				END
                 SELECT  @r1 = FLOOR(RAND() * 34);
                 SELECT  @r2 = FLOOR(RAND() * 34);
@@ -57,6 +57,6 @@ WHILE ( @flag > 0 )
                 SELECT  @r5 = FLOOR(RAND() * 34);
                 SELECT  @r6 = FLOOR(RAND() * 34);
                 SELECT  @b1 = FLOOR(RAND() * 17);
-                SELECT  @flag =@flag -1;
+                SELECT  @randnum = @randnum -1;
             END;
     END;
